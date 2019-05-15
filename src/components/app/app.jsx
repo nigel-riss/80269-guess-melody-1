@@ -3,8 +3,8 @@ import WelcomeScreen from '../../components/welcome-screen/welcome-screen.jsx';
 
 const App = () => {
   return <WelcomeScreen
-    time = "5"
-    errorCount = "3"
+    time = {5}
+    errorCount = {3}
   />;
 };
 
