@@ -1,11 +1,25 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import WelcomeScreen from '../../components/welcome-screen/welcome-screen.jsx';
 
-const App = () => {
+const App = (props) => {
+  const {
+    time,
+    errorCount,
+    onClick
+  } = props;
+
   return <WelcomeScreen
-    time = {5}
-    errorCount = {3}
+    time = {time}
+    errorCount = {errorCount}
+    onClick = {onClick}
   />;
+};
+
+App.propTypes = {
+  time: PropTypes.number.isRequired,
+  errorCount: PropTypes.number.isRequired,
+  onClick: PropTypes.func.isRequired
 };
 
 export default App;
