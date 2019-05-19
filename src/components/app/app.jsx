@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import WelcomeScreen from '../../components/welcome-screen/welcome-screen.jsx';
+import questions from '../../mocks/questions.js';
+import WelcomeScreen from '../welcome-screen/welcome-screen.jsx';
+import GenreQuestionsScreen from '../genre-questions-screen/genre-questions-screen.jsx';
 
 const App = (props) => {
   const {
@@ -9,10 +11,14 @@ const App = (props) => {
     onClick
   } = props;
 
-  return <WelcomeScreen
-    time = {time}
-    errorCount = {errorCount}
-    onClick = {onClick}
+  // return <WelcomeScreen
+  //   time = {time}
+  //   errorCount = {errorCount}
+  //   onClick = {onClick}
+  // />;
+  return <GenreQuestionsScreen
+    answers = {questions[0].answers}
+    gerre = {questions[0].genre}
   />;
 };
 
