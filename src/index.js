@@ -8,10 +8,10 @@ const gameSettings = {
   errorCount: 3,
 };
 
-const onWelcomeScreenClick = () => {
-  // console.log(`Play button clicked`);
-  // alert(`Play button clicked`);
-};
+// const onWelcomeScreenClick = () => {
+//   // console.log(`Play button clicked`);
+//   // alert(`Play button clicked`);
+// };
 
 const init = (gameQuestions) => {
   const {
@@ -22,7 +22,7 @@ const init = (gameQuestions) => {
   ReactDOM.render(<App
     time = {time}
     errorCount = {errorCount}
-    onClick = {onWelcomeScreenClick}
+    // onClick = {onWelcomeScreenClick}
     questions = {gameQuestions}
   />, document.querySelector(`.main`));
 };
