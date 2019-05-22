@@ -8,7 +8,7 @@ Enzyme.configure({adapter: new Adapter()});
 it(`WelcomeScreen correctly handles click`, () => {
   const clickHandler = jest.fn();
   const welcomeScreen = shallow(<WelcomeScreen
-    time = {0}
+    gameTime = {0}
     errorCount = {0}
     onClick = {clickHandler}
   />);

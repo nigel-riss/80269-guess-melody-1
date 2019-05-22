@@ -1,6 +1,10 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import {configure, mount} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+
 import App from './app.jsx';
+
+configure({adapter: new Adapter()});
 
 const mock = {
   questions: [
@@ -42,16 +46,22 @@ const mock = {
   ],
 };
 
-it(`App correctly renders`, () => {
+it(`On click on WelcomeScreen App switches to the first question`, () => {
   const {questions} = mock;
 
-  const tree = renderer
-    .create(<App
-      gameTime = {0}
-      errorCount = {0}
-      questions = {questions}
-    />)
-    .toJSON();
+  const app = mount(<App
+    errorCount={0}
+    gameTime={0}
+    questions={questions}
+  />);
 
-  expect(tree).toMatchSnapshot();
+  const button = app.find(`button`);
+  button.simulate(`click`);
+  app.update();
+
+  expect(app.state(`question`)).toEqual(0);
+
+  // const title = app.find(`.game__title`);
+  // expect(title).toHaveLength(1);
+  // expect(title.text().indexOf(`rock`)).toBeGeaterThanOrEqual(0);
 });
