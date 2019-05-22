@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const WelcomeScreen = (props) => {
   const {
-    time,
+    gameTime,
     errorCount,
     onClick
   } = props;
@@ -18,7 +18,7 @@ const WelcomeScreen = (props) => {
     <h2 className="welcome__rules-title">Правила игры</h2>
     <p className="welcome__text">Правила просты:</p>
     <ul className="welcome__rules-list">
-      <li>За {time} минут нужно ответить на все вопросы.</li>
+      <li>За {gameTime} минут нужно ответить на все вопросы.</li>
       <li>Можно допустить {errorCount} ошибки.</li>
     </ul>
     <p className="welcome__text">Удачи!</p>
@@ -26,7 +26,7 @@ const WelcomeScreen = (props) => {
 };
 
 WelcomeScreen.propTypes = {
-  time: PropTypes.number.isRequired,
+  gameTime: PropTypes.number.isRequired,
   errorCount: PropTypes.number.isRequired,
   onClick: PropTypes.func,
 };

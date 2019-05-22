@@ -1,17 +1,55 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-// import questions from '../../mocks/questions.js';
+
 import WelcomeScreen from '../welcome-screen/welcome-screen.jsx';
-// import GenreQuestionsScreen from '../genre-questions-screen/genre-questions-screen.jsx';
+import GenreQuestionsScreen from '../genre-questions-screen/genre-questions-screen.jsx';
+import ArtistQuestionsScreen from '../artist-questions-screen/artist-questions-screen.jsx';
 
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      question: -1,
+    };
+  }
+
+  _getScreen(question, onClick) {
+    if (!question) {
+      const {
+        errorCount,
+        gameTime,
+      } = this.props;
+
+      return <WelcomeScreen
+        gameTime = {gameTime}
+        errorCount = {errorCount}
+        onClick = {onClick}
+      />;
+    }
+
+    switch (question.type) {
+      case `genre`: return <GenreQuestionsScreen
+        question={question}
+        onAnswer={onClick}
+      />;
+
+      case `artist`: return <ArtistQuestionsScreen
+        question={question}
+        onAnswer={onClick}
+      />;
+    }
+
+    return null;
+  }
+
   render() {
     const {
-      time,
-      errorCount,
-      // questions,
+      questions,
     } = this.props;
+
+    const {question} = this.state;
 
     return <section className="game game--artist">
       <header className="game__header">
@@ -43,21 +81,18 @@ class App extends Component {
         </div>
       </header>
 
-      <WelcomeScreen
-        time = {time}
-        errorCount = {errorCount}
-        onClick = {() => {
-          // question++;
-        }}
-      />;
+      {this._getScreen(questions[question], () => {
+        this.setState({
+          question: (question + 1 >= questions.length) ? -1 : question + 1,
+        });
+      })}
     </section>;
   }
 }
 
 App.propTypes = {
-  time: PropTypes.number.isRequired,
+  gameTime: PropTypes.number.isRequired,
   errorCount: PropTypes.number.isRequired,
-  // onClick: PropTypes.func.isRequired,
   questions: PropTypes.array.isRequired,
 };
 
